@@ -31,7 +31,7 @@ def Login():
 
 
 @app.route('/novo-usuario', methods=['post', 'get'])
-@login_required
+#@login_required
 def Criar_Acesso():
     novo_usuario = Novo_user()
     if novo_usuario.validate_on_submit() and 'btn_criar' in request.form:
