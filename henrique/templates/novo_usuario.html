@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<div class="main-login">
+    <div class="left-login">
+        <img src="static/inbox.svg" class="left-login-image" alt="dragão">
+    </div>
+    <form method="post" action="">
+        {{ novo_usuario.csrf_token }}
+        <div class="right-login">
+            <div class="card-login">
+                <h1>Novo Cadastro</h1>
+                <div class="textfield">
+                    {{ novo_usuario.email.label }}
+                    {% if novo_usuario.email.errors %}
+                        {{ novo_usuario.email(class = 'form-control is-invalid') }}
+                            <div class="invalid-feedback">
+                                {% for erro in novo_usuario.email.errors %}
+                                    {{erro}}
+                                {% endfor %}
+                            </div>
+                    {% else %}
+                        {{ novo_usuario.email(placeholder = 'E-mail') }}
+                    {% endif %}
+                </div>
+                <div class="textfield">
+                    {{ novo_usuario.nova_senha.label }}
+                    {% if novo_usuario.errors %}
+                        {{ novo_usuario.nova_senha(class = 'form-control is-invalid') }}
+                                <div class="invalid-feedback">
+                                    {% for erro in novo_usuario.nova_senha.errors %}
+                                        {{erro}}
+                                    {% endfor %}
+                                </div>
+                    {% else %}
+                        {{ novo_usuario.nova_senha (placeholder = 'Senha') }}
+                    {% endif %}
+                </div>
+                 <div class="textfield">
+                    {{ novo_usuario.confirme_senha.label }}
+                    {% if novo_usuario.errors %}
+                        {{ novo_usuario.confirme_senha(class = 'form-control is-invalid') }}
+                                <div class="invalid-feedback">
+                                    {% for erro in novo_usuario.confirme_senha.errors %}
+                                        {{erro}}
+                                    {% endfor %}
+                                </div>
+                    {% else %}
+                        {{ novo_usuario.confirme_senha (placeholder = 'Confirma senha') }}
+                    {% endif %}
+                </div>
+            {{ novo_usuario.btn_criar(class = 'btn-login') }}
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+
+
+{% if current_user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid container">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <h1>Card Norte</h1>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown ms-3">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Empresas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="{{url_for('Consiglogi')}}">Cadastrar Nova Empresa</a></li>
+                          <li><a class="dropdown-item" href="#">Verificar Status</a></li>
+                          <li><a class="dropdown-item" href="#">Alterar Descontos</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="{{ url_for('Prodan') }}">Remover Empresa</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown ms-3">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Clientes
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="#">Cadastrar Cliente</a></li>
+                          <li><a class="dropdown-item" href="#">Consultar Cliente</a></li>
+                          <li><a class="dropdown-item" href="#">Renovar Cliente</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">Clientes Banidos</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active me-5" aria-current="page" href="{{url_for('Sair')}}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+{% endif %}

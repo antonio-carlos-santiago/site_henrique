@@ -1,0 +1,291 @@
+#body_mensgemLabel {
+    margin: 10px;
+    margin-bottom: 0px;
+    text-align: center;
+    display: none;
+    width: 947px;
+}
+
+#body_situacaoServidorLabel {
+    float: none;
+    display: inline;
+    margin-left: 4px;
+    font-size: 11px;
+    width: 40px;
+    height: 10px;
+    background: none;
+    border: none;
+    line-height: 0px;
+    padding: 0px;
+}
+
+
+
+.row-856 {
+    width: 856px;
+    float: left;
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+    .row-856 span {
+        font-size: 14px;
+    }
+
+        .row-856 span .DoisCampos {
+            position: relative;
+        }
+
+    .row-856 input[type=text] {
+        width: 844px;
+        height: 34px;
+        background: #f4f4f4 no-repeat;
+        border-color: #f6f7f8;
+        border-style: solid;
+        border-width: 1px;
+        line-height: 29px;
+    }
+
+        .row-856 input[type=text].DoisCampos {
+            width: 3rem !important;
+            position: relative;
+        }
+
+    .row-856 textarea {
+        width: 844px;
+        height: 60px;
+        background: #f4f4f4 no-repeat;
+        border-color: #f1f2f3;
+        border-style: solid;
+        border-width: 1px;
+        line-height: 29px;
+        resize: none;
+    }
+
+    .row-856 input[type=password] {
+        width: 844px;
+        height: 34px;
+        background: #f4f4f4 no-repeat;
+        border-color: #f1f2f3;
+        border-style: solid;
+        border-width: 1px;
+        line-height: 29px;
+    }
+
+    .row-856 select {
+        width: 412px;
+        height: 34px !important;
+        background: #f4f4f4 no-repeat;
+        border-color: #f1f2f3;
+        border-style: solid;
+        border-width: 1px;
+        line-height: 29px;
+        padding-right: 0px;
+    }
+
+    .row-265 {
+        width: 265px;
+        float: left;
+        margin-left: 30px;
+        margin-bottom: 15px;
+    }
+    
+        .row-265 span, label {
+            font-size: 14px;
+        }
+    
+        .row-265 input[type=text] {
+            width: 253px;
+            height: 34px;
+            background: #f4f4f4 no-repeat;
+            border-color: #f1f2f3;
+            border-style: solid;
+            border-width: 1px;
+            line-height: 29px;
+        }
+    
+        .row-265 select {
+            width: 247px;
+            height: 36px;
+            background: #f4f4f4 no-repeat;
+            border-color: #f1f2f3;
+            border-style: solid;
+            border-width: 1px;
+            line-height: 29px;
+        }
+
+        .row-414 label, span {
+            font-size: 14px;
+        }
+        
+        .row-414 {
+            width: 414px;
+            float: left;
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+            .row-414 input[type=text], .row-414 textarea {
+                width: 400px;
+                height: 34px;
+                background: #f4f4f4 no-repeat;
+                border-color: #f1f2f3;
+                border-style: solid;
+                border-width: 1px;
+                line-height: 29px;
+            }
+        
+            .row-414 input[type=password] {
+                width: 400px;
+                height: 34px;
+                background: #f4f4f4 no-repeat;
+                border-color: #f1f2f3;
+                border-style: solid;
+                border-width: 1px;
+                line-height: 29px;
+            }
+        
+        .row-483 input[type=password] {
+            width: 400px;
+            height: 34px;
+            background: #f4f4f4 no-repeat;
+            border-color: #f1f2f3;
+            border-style: solid;
+            border-width: 1px;
+            line-height: 29px;
+        }
+        
+        .row-414 select {
+            width: 413px !important;
+            height: 36px !important;
+            background: #f4f4f4 no-repeat;
+            border-color: #f1f2f3;
+            border-style: solid;
+            border-width: 1px;
+            line-height: 29px;
+            padding-right: 0px;
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            .row-414 input[type=text] {
+                line-height: 0px;
+            }
+        }
+        /* Somente para Chrome e Safari */
+        .row-414 .fakeupload {
+            width: 400px;
+            height: 34px;
+            border-color: #f1f2f3;
+            border-style: solid;
+            border-width: 1px;
+            line-height: 29px;
+            background: #f4f4f4 url("../../img/botao-selecione-documento.png") no-repeat 99% 51% !important;
+            cursor: pointer;
+        }
+        
+        .row-414 .fakeupload2 {
+            width: 400px;
+            height: 34px;
+            border-color: #f1f2f3;
+            border-style: solid;
+            border-width: 1px;
+            line-height: 29px;
+            background: #f4f4f4 url("../../img/botao-selecione-documento.png") no-repeat 99% 51% !important;
+            cursor: pointer;
+        }
+        
+        .row-414 .fakeuploadDocumento {
+            width: 400px;
+            height: 34px;
+            border-color: #f1f2f3;
+            border-style: solid;
+            border-width: 1px;
+            line-height: 29px;
+            background: #f4f4f4 url("../../img/botao-selecione-documento.png") no-repeat 99% 51% !important;
+            cursor: pointer;
+        }
+        
+        .row-414 .fakeuploadarquivo {
+            width: 400px;
+            height: 34px;
+            border-color: #f1f2f3;
+            border-style: solid;
+            border-width: 1px;
+            line-height: 29px;
+            background: #f4f4f4 url("../../img/botao-selecione-documento.png") no-repeat 99% 51% !important;
+            cursor: pointer;
+        }
+        
+        .row-414 .realupload {
+            float: right;
+            height: 34px;
+            opacity: 0.0;
+            position: relative;
+            top: -35px;
+            opacity: 0.0;
+            filter: alpha(opacity=0.0);
+            cursor: pointer;
+        }
+        .row-856 {
+            width: 856px;
+            float: left;
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+            .row-856 span {
+                font-size: 14px;
+            }
+        
+                .row-856 span .DoisCampos {
+                    position: relative;
+                }
+        
+            .row-856 input[type=text] {
+                width: 844px;
+                height: 34px;
+                background: #f4f4f4 no-repeat;
+                border-color: #f1f2f3;
+                border-style: solid;
+                border-width: 1px;
+                line-height: 29px;
+            }
+        
+                .row-856 input[type=text].DoisCampos {
+                    width: 3rem !important;
+                    position: relative;
+                }
+        
+            .row-856 textarea {
+                width: 844px;
+                height: 60px;
+                background: #f4f4f4 no-repeat;
+                border-color: #2a5174;
+                border-style: solid;
+                border-width: 1px;
+                line-height: 29px;
+                resize: none;
+            }
+        
+            .row-856 input[type=password] {
+                width: 844px;
+                height: 34px;
+                background: #f4f4f4 no-repeat;
+                border-color: #2a5174;
+                border-style: solid;
+                border-width: 1px;
+                line-height: 29px;
+            }
+        
+            .row-856 select {
+                width: 412px;
+                height: 34px !important;
+                background: #f4f4f4 no-repeat;
+                border-color: #2a5174;
+                border-style: solid;
+                border-width: 1px;
+                line-height: 29px;
+                padding-right: 0px;
+            }
+
+

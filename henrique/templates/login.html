@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="main-login">
+    <div class="left-login">
+        <h1>Faça login<br>E entre para o nosso  time</h1>
+        <img src="static/inbox.svg" class="left-login-image" alt="dragão">
+    </div>
+    <form method="post" action="">
+        {{ login_sis.csrf_token }}
+        <div class="right-login">
+            <div class="card-login">
+                <h1>Card Norte</h1>
+                <div class="textfield">
+                    {{ login_sis.email.label }}
+                    {% if login_sis.email.errors %}
+                        {{ login_sis.email(class = 'form-control is-invalid') }}
+                            <div class="invalid-feedback">
+                                {% for erro in login_sis.email.errors %}
+                                    {{erro}}
+                                {% endfor %}
+                            </div>
+                    {% else %}
+                        {{ login_sis.email(placeholder = 'E-mail') }}
+                    {% endif %}
+                </div>
+                <div class="textfield">
+                    {{ login_sis.senha.label }}
+                    {% if login_sis.errors %}
+                        {{ login_sis.senha(class = 'form-control is-invalid') }}
+                                <div class="invalid-feedback">
+                                    {% for erro in login_sis.senha.errors %}
+                                        {{erro}}
+                                    {% endfor %}
+                                </div>
+                    {% else %}
+                        {{ login_sis.senha (placeholder = 'Senha') }}
+                    {% endif %}
+                </div>
+            {{ login_sis.btn_login(class = 'btn-login') }}
+            </div>
+        </div>
+    </form>
+
+
+</div>
+{% endblock %}
