@@ -11,8 +11,13 @@ class Base(DeclarativeBase):
 app = Flask(__name__)
 
 app.secret_key = 'queroumkuvaimedar?'
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:FgaGBG5BfA6D26CGda51G-c1Ebb1*53C@viaduct.proxy.rlwy.net:50457/railway'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:ffFc-4Baffd5EGfGD6eb2d1feFdFB54d@viaduct.proxy.rlwy.net:55020/railway'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///project.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://projeto_8tfp_user:mFDd4eWmyrpAnIORHsDL5lRssdohei5S@dpg-cl2f2lo310os73b46lpg-a/projeto_8tfp'
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['PERMANENT_SESSION_LIFETIME'] = 1800
+
+
 
 db = SQLAlchemy(model_class=Base)
 

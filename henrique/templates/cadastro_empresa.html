@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+<div class="main-reg">
+    <form method="post" action="">
+        {{ novaempresa.csrf_token }}
+        <h1 class="titulo-reg">Cadastrar Nova Empresa</h1>
+        <div class="card-cadastro">
+            <div class="card-card-cadastro">
+                <div class="textfield">
+                    {{ novaempresa.nome.label }}
+                    {{ novaempresa.nome(placeholder="FisioVitalis - Clínica de Fisioterapia") }}
+                </div>
+                <div class="textfield">
+                    {{ novaempresa.cnpj.label }}
+                    {{ novaempresa.cnpj(placeholder="12.345.678/0001-90")}}
+                </div>
+                <div class="textfield">
+                    {{ novaempresa.cep.label }}
+                    {{ novaempresa.cep(placeholder="12345-123")}}
+                </div>
+                <div class="textfield">
+                    {{ novaempresa.estado.label }}
+                    {{ novaempresa.estado}}
+                </div>
+                <div class="textfield">
+                    {{ novaempresa.cidade.label }}
+                    {{ novaempresa.cidade}}
+                </div>
+            </div>
+            <div class="card-card-cadastro">
+                <div class="textfield">
+                    {{ novaempresa.endereco.label }}
+                    {{ novaempresa.endereco(placeholder="Rua Afonso Martins")}}
+                </div>
+                <div class="textfield">
+                    {{ novaempresa.numero_residencia.label }}
+                    {{ novaempresa.numero_residencia(placeholder="Nº 22")}}
+                </div>
+                <div class="textfield">
+                    {{ novaempresa.servico.label }}
+                    {{ novaempresa.servico(placeholder="Hemograma")}}
+                </div>
+                <div class="textfield">
+                    {{ novaempresa.desconto.label }}
+                    {{ novaempresa.desconto(placeholder="10%")}}
+                </div>
+                <div class="textfield">
+                    {{ novaempresa.adesao.label }}
+                    {{ novaempresa.adesao}}
+                </div>
+            </div>
+                   
+        </div>
+        <div class="conf-btn-cad">
+            {{ novaempresa.btn_cadastrar_empresa(class='btn-reg') }}
+        </div>
+        
+    </form>
+
+</div>
+
+
+{% endblock %}

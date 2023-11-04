@@ -1,11 +1,23 @@
-from bs4 import BeautifulSoup
-from flask import render_template, request, redirect, flash, url_for
+from flask import render_template, request, redirect, flash, url_for, session
 from flask_login import login_user, logout_user, login_required
 from requests import Session
-
 from henrique import app, db, bcrypt
-from henrique.formularios import Login_sis, Novo_contracheque, Consulta_Prodan, Novo_user, Consulta_Consiglog
+from henrique.formularios import Login_sis, Novo_user, NovaEmpresa
 from henrique.modelos import Usuarios
+import time
+
+
+@app.before_request
+def session_management():
+    session.permanent = True
+    app.permanent_session_lifetime = app.config['PERMANENT_SESSION_LIFETIME']
+    
+    if 'last_activity' in session:
+        elapsed_time = time.time() - session['last_activity']
+        if elapsed_time > app.config['PERMANENT_SESSION_LIFETIME']:
+            # A sessão expirou; você pode redirecionar o usuário para uma página de login
+            return redirect(url_for('Login'))
+    session['last_activity'] = time.time()
 
 
 @app.route('/principal')
@@ -16,10 +28,10 @@ def Home():
 
 @app.route('/', methods=['post', 'get'])
 def Login():
+    logout_user()
     login_sis = Login_sis()
     if login_sis.validate_on_submit() and 'btn_login' in request.form:
         usuario = Usuarios.query.filter_by(email=login_sis.email.data).first()
-        print(usuario.senha)
         if usuario and bcrypt.check_password_hash(usuario.senha, login_sis.senha.data):
             login_user(usuario)
             flash('Logado com sucesso', 'alert-success')
@@ -30,8 +42,22 @@ def Login():
     return render_template('login.html', login_sis=login_sis)
 
 
+
+@app.route("/cadastrar-empresa", methods=["post", "get"])
+@login_required
+def CadastrarEmpressa():
+    novaempresa = NovaEmpresa()
+    if novaempresa.validate_on_submit() and "btn_cadastrar_empresa" in request.form:
+        pass
+
+
+
+    return render_template('cadastro_empresa.html', novaempresa=novaempresa)
+
+
+
 @app.route('/novo-usuario', methods=['post', 'get'])
-#@login_required
+@login_required
 def Criar_Acesso():
     novo_usuario = Novo_user()
     if novo_usuario.validate_on_submit() and 'btn_criar' in request.form:

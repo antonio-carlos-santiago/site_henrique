@@ -1,6 +1,6 @@
 from henrique import db, login_manager
 from flask_login import UserMixin
-from sqlalchemy import Integer, String, Boolean, Numeric, DateTime, ForeignKey, Float
+from sqlalchemy import Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 from datetime import datetime
 
@@ -48,7 +48,6 @@ class Clientes(db.Model):
 
 
 
-
 class ListaParticipantes(db.Model):
     id_participante: Mapped[int] = mapped_column(Integer, primary_key=True)
     nome: Mapped[str] = mapped_column(String, unique=False, nullable=False)
@@ -69,5 +68,6 @@ class EmpresasSocias(db.Model):
     numero_residencia: Mapped[int] = mapped_column(Integer, unique=False, nullable=False)
     servico: Mapped[str] = mapped_column(String, unique=False, nullable=False)
     desconto: Mapped[int] = mapped_column(Integer, unique=False, nullable=False)
+    status: Mapped[bool] = mapped_column(Boolean, unique=False, nullable=False, default=False)
     data_cadastro: Mapped[str] = mapped_column(DateTime, default=datetime.utcnow)
     data_fim_contrato: Mapped[str] = mapped_column(DateTime, nullable=False)

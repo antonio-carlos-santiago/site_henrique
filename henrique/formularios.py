@@ -1,6 +1,9 @@
+from wsgiref.validate import validator
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, StringField, EmailField, PasswordField, SelectField
+from numpy import diag
+from wtforms import SubmitField, StringField, EmailField, PasswordField, DateField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
+from wtforms import validators
 
 from henrique.modelos import Usuarios
 
@@ -13,7 +16,7 @@ class Login_sis(FlaskForm):
 
 class Novo_user(FlaskForm):
     email = StringField('E-mail', validators=[DataRequired(), Email()])
-    nova_senha = PasswordField('Nova Senha', validators=[DataRequired(), Length(6, 15)])
+    nova_senha = PasswordField('Nova Senha', validators=[DataRequired(), Length(8, 20)])
     confirme_senha = PasswordField('Confirmar Senha',
                                    validators=[DataRequired(), EqualTo('nova_senha', message='A senha não confere')])
     btn_criar = SubmitField('Criar Acesso')
@@ -24,23 +27,87 @@ class Novo_user(FlaskForm):
             raise ValidationError('E-mail já está cadastrado em nossa plataforma')
 
 
-class Novo_contracheque(FlaskForm):
-    servidor = SelectField('Tipo Servidor', choices=[('31', 'Pensionista'), ('01', 'Ativos'), ('01', 'Aposentado')],
-                           validators=[DataRequired()])
-    cpf = StringField('Informe o CPF', validators=[DataRequired(), Length(11, 11)])
-    matricula = StringField('Informe a Matricula', validators=[DataRequired(), Length(8)])
-    mes = SelectField('Informe o Mês',
-                      choices=[('01'), ('02'), ('03'), ('04'), ('05'), ('06'), ('07'), ('08'), ('09'), ('10'), ('11'),
-                               ('12')], validators=[DataRequired()])
-    ano = SelectField('Informe o Ano', choices=[('2021'), ('2022')], validators=[DataRequired()])
-    btn_gerar = SubmitField('Gerar Contracheque')
+
+class NovaEmpresa(FlaskForm):
+
+    estados = [
+        ('', 'Escolha um estado'),
+        ('AM', 'Amazonas'),        
+    ]
+
+    cidades = [
+        ('', 'Escolha uma cidade'),
+        ('Manaus', 'Manaus')
+    ]
+
+    tempo_adesao = [
+        ('', 'Escolha o tempo de adesão'),
+        ("1",'1 ano'),
+        ("2",'2 anos'),
+        ("3",'3 anos'),
+        ("4",'4 anos'),
+        ("5",'5 anos'),
+    ]
+       
 
 
-class Consulta_Prodan(FlaskForm):
-    cpf = StringField('Informe o CPF', validators=[DataRequired(), Length(11, 11)])
-    btn_consultar = SubmitField('Consultar')
+    nome = StringField("Nome Fantasia", validators=[DataRequired()])
+    cnpj = StringField("CNPJ", validators=[DataRequired(), Length(14, 14)])
+    cep = StringField("Cep", validators=[DataRequired(), Length(8, 8)])
+    estado = SelectField("Estado", choices=estados, validators=[DataRequired()])
+    cidade = SelectField("Cidade", choices=cidades, validators=[DataRequired()])
+    endereco = StringField("Endereço", validators=[DataRequired()])
+    numero_residencia = StringField("Numero", validators=[DataRequired()])
+    servico = StringField("Serviço Disponibilizado", validators=[DataRequired()])
+    desconto = StringField("Desconto", validators=[DataRequired()])
+    adesao = SelectField("Tempo de Adesão", choices=tempo_adesao, validators=[DataRequired(message="Campo Obrigatório")])
+    btn_cadastrar_empresa = SubmitField("Cadastrar Empresa")
 
 
-class Consulta_Consiglog(FlaskForm):
-    matricula = StringField('Informe a Matricula', validators=[DataRequired(), Length(8, 8)])
-    btn_consultar = SubmitField('Consultar')
+
+class NovoCliente(FlaskForm):
+    estados = [
+        ('', 'Escolha um estado'),
+        ('AM', 'Amazonas'),        
+    ]
+
+    cidades = [
+        ('', 'Escolha uma cidade'),
+        ('Manaus', 'Manaus')
+    ]
+
+    tempo_adesao = [
+        ('', 'Escolha o tempo de adesão'),
+        ("1",'1 ano'),
+        ("2",'2 anos'),
+        ("3",'3 anos'),
+        ("4",'4 anos'),
+        ("5",'5 anos'),
+    ]
+
+    nome = StringField("Nome", validators=[DataRequired()])
+    cpf = StringField("CPF", validators=[DataRequired(), Length(11)])
+    data_nascimento = DateField("Data de Nascimento", format='%d/%m/%Y', validators=[DataRequired(message="Campo Obrigatório")])
+    rg = StringField("RG", validators=[DataRequired(message="Campo Obrigatório")])
+    telefone = StringField("Telefone", validators=[DataRequired(message="Campo Obrigatório")])
+    email = EmailField("Email", validators=[DataRequired(message="Campo Obrigatório"), Email()])
+    cep = StringField("CEP", validators=[DataRequired(message="Campo Obrigatório"), validators.Regexp(r'^\d{5}-\d{3}$', message="Formato de CEP inválido. Use o formato 12345-678.")])
+    estado = SelectField("Estado", choices=estados, validators=[DataRequired(message="Campo Obrigatório")])
+    cidade = SelectField("Cidade", choices=cidades, validators=[DataRequired(message="Campo Obrigatório")])
+    endereco = StringField("Endereço", validators=[DataRequired(message="Campo Obrigatório")])
+    numero_residencia = StringField("Numero Residencia", validators=[DataRequired(message="Campo Obrigatório")])
+    adesao = SelectField("Tempo de Adesão", choices=tempo_adesao, validators=[DataRequired(message="Campo Obrigatório")])
+    btn_cadastrar_cliente = SubmitField("Cadastrar Cliente")
+
+
+
+class BuscarCliente(FlaskForm):
+    cpf_cliente = StringField("CPF Conta Master", validators=[DataRequired(message="Campo Obrigatório"), Length(11)])
+    btn_busca = SubmitField("Buscar Master")
+
+
+
+class CadastrarParticipante(FlaskForm):
+    nome_participante = StringField("Nome Participante", validators=[DataRequired(message="Campo Obrigatório")])
+    cpf_participante = StringField("CPF Participante", validators=[DataRequired(message="Campo Obrigatório"), Length(11)])
+    btn_cadastrar_participante = SubmitField("Cadastrar Participante")

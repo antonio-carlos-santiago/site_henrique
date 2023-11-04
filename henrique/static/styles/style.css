@@ -133,3 +133,87 @@ body{
     box-shadow: 0px 10px 40px -12px #00ff8052;    
 }
 
+.card-cadastro{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 30px 35px;
+    background: #2f2841;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #00000056;
+
+}
+
+.card-card-cadastro{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    
+    
+
+}
+
+.card-cadastro > h1{
+    color: #00ff88;
+    font-weight: 700;
+    margin:0 ;
+}
+
+
+.textfield > select{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: #514869;
+    color: #f0ffffde;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.titulo-reg{
+    color: #00ff88;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 25px;
+    margin: 0px;
+    text-align: center;
+}
+
+.main-reg{
+    width: 100vw;
+    height: 100vh;
+    background: #201b2c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+ }
+
+ .btn-reg{
+    width: 100%;
+    padding: 16px 0px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background: #00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+ }
+
+ .conf-btn-cad{
+    margin-top: 20px;
+ }
