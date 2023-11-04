@@ -5,7 +5,7 @@ from wtforms import SubmitField, StringField, EmailField, PasswordField, DateFie
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from wtforms import validators
 
-from henrique.modelos import Usuarios
+from henrique.modelos import Usuarios, EmpresasSocias
 
 
 class Login_sis(FlaskForm):
@@ -48,20 +48,26 @@ class NovaEmpresa(FlaskForm):
         ("4",'4 anos'),
         ("5",'5 anos'),
     ]
-       
 
 
-    nome = StringField("Nome Fantasia", validators=[DataRequired()])
-    cnpj = StringField("CNPJ", validators=[DataRequired(), Length(14, 14)])
-    cep = StringField("Cep", validators=[DataRequired(), Length(8, 8)])
-    estado = SelectField("Estado", choices=estados, validators=[DataRequired()])
-    cidade = SelectField("Cidade", choices=cidades, validators=[DataRequired()])
-    endereco = StringField("Endereço", validators=[DataRequired()])
-    numero_residencia = StringField("Numero", validators=[DataRequired()])
-    servico = StringField("Serviço Disponibilizado", validators=[DataRequired()])
-    desconto = StringField("Desconto", validators=[DataRequired()])
+    nome = StringField("Nome Fantasia", validators=[DataRequired(message="Campo Obrigatório")])
+    cnpj = StringField("CNPJ", validators=[DataRequired(message="Campo Obrigatório"), Length(14, 14)])
+    cep = StringField("Cep", validators=[DataRequired(message="Campo Obrigatório"), Length(8, 8)])
+    estado = SelectField("Estado", choices=estados, validators=[DataRequired(message="Campo Obrigatório")])
+    cidade = SelectField("Cidade", choices=cidades, validators=[DataRequired(message="Campo Obrigatório")])
+    endereco = StringField("Endereço", validators=[DataRequired(message="Campo Obrigatório")])
+    numero_residencia = StringField("Numero", validators=[DataRequired(message="Campo Obrigatório")])
+    servico = StringField("Serviço Disponibilizado", validators=[DataRequired(message="Campo Obrigatório")])
+    desconto = StringField("Desconto", validators=[DataRequired(message="Campo Obrigatório")])
     adesao = SelectField("Tempo de Adesão", choices=tempo_adesao, validators=[DataRequired(message="Campo Obrigatório")])
     btn_cadastrar_empresa = SubmitField("Cadastrar Empresa")
+
+    def validate_cnpj(self, cnpj):
+        empresas = EmpresasSocias.query.filter_by(cnpj=cnpj.data).first()
+        if empresas:
+            raise ValidationError("CNPJ já cadastrado !!!")
+
+
 
 
 

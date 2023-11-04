@@ -1,10 +1,10 @@
 from flask import render_template, request, redirect, flash, url_for, session
 from flask_login import login_user, logout_user, login_required
-from requests import Session
 from henrique import app, db, bcrypt
 from henrique.formularios import Login_sis, Novo_user, NovaEmpresa
 from henrique.modelos import Usuarios
 import time
+from henrique.funcoes import *
 
 
 @app.before_request
@@ -48,16 +48,15 @@ def Login():
 def CadastrarEmpressa():
     novaempresa = NovaEmpresa()
     if novaempresa.validate_on_submit() and "btn_cadastrar_empresa" in request.form:
-        pass
-
-
+        status = RegistarEmpresa(novaempresa)
+        flash(status["message"], status["status_notificacao"])
 
     return render_template('cadastro_empresa.html', novaempresa=novaempresa)
 
 
 
 @app.route('/novo-usuario', methods=['post', 'get'])
-@login_required
+#@login_required
 def Criar_Acesso():
     novo_usuario = Novo_user()
     if novo_usuario.validate_on_submit() and 'btn_criar' in request.form:

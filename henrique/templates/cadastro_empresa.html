@@ -14,7 +14,16 @@
                 </div>
                 <div class="textfield">
                     {{ novaempresa.cnpj.label }}
-                    {{ novaempresa.cnpj(placeholder="12.345.678/0001-90")}}
+                    {% if novaempresa.errors %}
+                        {{ novaempresa.cnpj(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for erros in novaempresa.cnpj.errors %}
+                                {{ erros }}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ novaempresa.cnpj(placeholder="12.345.678/0001-90")}}
+                    {% endif %}
                 </div>
                 <div class="textfield">
                     {{ novaempresa.cep.label }}

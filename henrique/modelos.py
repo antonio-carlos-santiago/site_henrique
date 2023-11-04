@@ -68,6 +68,6 @@ class EmpresasSocias(db.Model):
     numero_residencia: Mapped[int] = mapped_column(Integer, unique=False, nullable=False)
     servico: Mapped[str] = mapped_column(String, unique=False, nullable=False)
     desconto: Mapped[int] = mapped_column(Integer, unique=False, nullable=False)
-    status: Mapped[bool] = mapped_column(Boolean, unique=False, nullable=False, default=False)
+    status: Mapped[bool] = mapped_column(Boolean, unique=False, default=False)
     data_cadastro: Mapped[str] = mapped_column(DateTime, default=datetime.utcnow)
     data_fim_contrato: Mapped[str] = mapped_column(DateTime, nullable=False)
