@@ -5,7 +5,7 @@ from wtforms import SubmitField, StringField, EmailField, PasswordField, DateFie
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from wtforms import validators
 
-from henrique.modelos import Usuarios, EmpresasSocias
+from henrique.modelos import Usuarios, Empresassocias
 
 
 class Login_sis(FlaskForm):
@@ -57,13 +57,11 @@ class NovaEmpresa(FlaskForm):
     cidade = SelectField("Cidade", choices=cidades, validators=[DataRequired(message="Campo Obrigatório")])
     endereco = StringField("Endereço", validators=[DataRequired(message="Campo Obrigatório")])
     numero_residencia = StringField("Numero", validators=[DataRequired(message="Campo Obrigatório")])
-    servico = StringField("Serviço Disponibilizado", validators=[DataRequired(message="Campo Obrigatório")])
-    desconto = StringField("Desconto", validators=[DataRequired(message="Campo Obrigatório")])
     adesao = SelectField("Tempo de Adesão", choices=tempo_adesao, validators=[DataRequired(message="Campo Obrigatório")])
     btn_cadastrar_empresa = SubmitField("Cadastrar Empresa")
 
     def validate_cnpj(self, cnpj):
-        empresas = EmpresasSocias.query.filter_by(cnpj=cnpj.data).first()
+        empresas = Empresassocias.query.filter_by(cnpj=cnpj.data).first()
         if empresas:
             raise ValidationError("CNPJ já cadastrado !!!")
 

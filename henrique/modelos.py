@@ -57,7 +57,7 @@ class ListaParticipantes(db.Model):
 
 
 
-class EmpresasSocias(db.Model):
+class Empresassocias(db.Model):
     id_empresa: Mapped[int] = mapped_column(Integer, primary_key=True)
     nome: Mapped[str] = mapped_column(String, unique=False, nullable=False)
     cnpj: Mapped[str] = mapped_column(String, unique=True, nullable=False)
@@ -66,8 +66,16 @@ class EmpresasSocias(db.Model):
     cidade: Mapped[str] = mapped_column(String, unique=False, nullable=False)
     endereco: Mapped[str] = mapped_column(String, unique=False, nullable=False)
     numero_residencia: Mapped[int] = mapped_column(Integer, unique=False, nullable=False)
-    servico: Mapped[str] = mapped_column(String, unique=False, nullable=False)
-    desconto: Mapped[int] = mapped_column(Integer, unique=False, nullable=False)
     status: Mapped[bool] = mapped_column(Boolean, unique=False, default=False)
     data_cadastro: Mapped[str] = mapped_column(DateTime, default=datetime.utcnow)
     data_fim_contrato: Mapped[str] = mapped_column(DateTime, nullable=False)
+
+
+
+class ServicosDisponiveis(db.Model):
+    id_servico: Mapped[int] = mapped_column(Integer,primary_key=True)
+    nome_servico: Mapped[str] = mapped_column(String, nullable=False)
+    desconto: Mapped[int] = mapped_column(Integer, nullable=False)
+    status: Mapped[bool] = mapped_column(Boolean, nullable=False)
+    id_empresas: Mapped[int] = mapped_column(Integer, ForeignKey("empresassocias.id_empresa"))
+    empresa = db.relationship("Empresassocias", backref="servicosdisponiveis")
