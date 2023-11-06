@@ -27,17 +27,18 @@ body{
     box-shadow: 0px 10px 40px #00000056;
 }
 
-.conf-div{
-    width: 80wh;
-    height: 80%;
+.conteiner-complemento{
+    width: 1350px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    padding: 30px 35px;
+    flex-direction: row;
+    padding: 10px 10px;
     background: #2f2841;
     border-radius: 20px;
     box-shadow: 0px 10px 40px #00000056;
+    margin: 10px;
 }
 
 .btn-busca{
