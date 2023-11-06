@@ -1,4 +1,3 @@
-from wsgiref.validate import validator
 from flask_wtf import FlaskForm
 from numpy import diag
 from wtforms import SubmitField, StringField, EmailField, PasswordField, DateField, SelectField
@@ -68,7 +67,6 @@ class NovaEmpresa(FlaskForm):
 
 
 
-
 class NovoCliente(FlaskForm):
     estados = [
         ('', 'Escolha um estado'),
@@ -106,12 +104,23 @@ class NovoCliente(FlaskForm):
 
 
 class BuscarCliente(FlaskForm):
-    cpf_cliente = StringField("CPF Conta Master", validators=[DataRequired(message="Campo Obrigatório"), Length(11)])
+    cpf_cliente = StringField("CPF Conta Master", validators=[DataRequired(message="Campo Obrigatório"), Length(11, 11)])
     btn_busca = SubmitField("Buscar Master")
 
 
 
+class BuscarEmpresa(FlaskForm):
+    cnpj = StringField("CPF Conta Master", validators=[DataRequired(message="Campo Obrigatório"), Length(14, 14)])
+    btn_busca = SubmitField("Buscar Master")
+
+    def validate_cnpj(self, cnpj):
+        buscar_empresa = Empresassocias.query.filter_by(cnpj=cnpj.data).first()
+        if not buscar_empresa:
+            raise ValidationError("Empresa não encontrada")
+        
+
+
 class CadastrarParticipante(FlaskForm):
     nome_participante = StringField("Nome Participante", validators=[DataRequired(message="Campo Obrigatório")])
-    cpf_participante = StringField("CPF Participante", validators=[DataRequired(message="Campo Obrigatório"), Length(11)])
+    cpf_participante = StringField("CPF Participante", validators=[DataRequired(message="Campo Obrigatório"), Length(11, 11)])
     btn_cadastrar_participante = SubmitField("Cadastrar Participante")

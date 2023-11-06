@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, flash, url_for, session
 from flask_login import login_user, logout_user, login_required
 from henrique import app, db, bcrypt
-from henrique.formularios import Login_sis, Novo_user, NovaEmpresa
+from henrique.formularios import *
 from henrique.modelos import Usuarios
 import time
 from henrique.funcoes import *
@@ -52,6 +52,14 @@ def CadastrarEmpressa():
         flash(status["message"], status["status_notificacao"])
 
     return render_template('cadastro_empresa.html', novaempresa=novaempresa)
+
+
+@app.route("/cadastrar-servico", methods=["get", "post"])
+@login_required
+def CadastrarServico():
+    buscarempresa = BuscarEmpresa()
+    return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa)
+    
 
 
 
