@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, StringField, EmailField, PasswordField, DateField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
-from henrique.funcoes import ListarEmpresas
+from henrique.funcoes.funcoes_status_alteracao import *
 from henrique.modelos import *
 
 

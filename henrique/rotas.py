@@ -6,7 +6,9 @@ from henrique.formularios.forms_empresa import *
 from henrique.formularios.forms_site import *
 from henrique.modelos import Usuarios
 import time
-from henrique.funcoes import *
+from henrique.funcoes.funcoes_cadastro_empresa import *
+from henrique.funcoes.funcoes_cadastro_servico import *
+from henrique.funcoes.funcoes_status_alteracao import *
 
 
 @app.before_request

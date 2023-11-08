@@ -61,3 +61,4 @@ def ListarEmpresas():
         cadastros_empresas = Empresassocias.query.all()
         lista_empresas = [empresa.nome for empresa in cadastros_empresas]
         return lista_empresas
+    
