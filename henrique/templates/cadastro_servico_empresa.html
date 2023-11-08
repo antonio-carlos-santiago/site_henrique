@@ -30,9 +30,21 @@
                     </div>
                 {% else %}
                 <br>
-                <br>
                     {{ buscarempresa.btn_busca(class='btn-busca-cof') }}
+                <br>
+                <br>
                     
+                {% endif %}
+                {% if registrarservico.errors %}
+                    <div class="textfield-serv">
+                        {{registrarservico.servico.label}}
+                        {{registrarservico.servico(class="form-control is-invalid", disabled='True')}}                    
+                        <div class="invalid-feedback">
+                            {% for erros in registrarservico.servico.errors %}
+                                {{ erros }}
+                            {% endfor %}
+                        </div>
+                    </div>
                 {% endif %}
             </form>
         </div>

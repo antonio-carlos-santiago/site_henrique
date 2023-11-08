@@ -48,7 +48,7 @@ class Clientes(db.Model):
 
 
 
-class ListaParticipantes(db.Model):
+class Listaparticipantes(db.Model):
     id_participante: Mapped[int] = mapped_column(Integer, primary_key=True)
     nome: Mapped[str] = mapped_column(String, unique=False, nullable=False)
     cpf: Mapped[str] = mapped_column(String, unique=True, nullable=False)
@@ -72,7 +72,7 @@ class Empresassocias(db.Model):
 
 
 
-class ServicosDisponiveis(db.Model):
+class Servicosdisponiveis(db.Model):
     id_servico: Mapped[int] = mapped_column(Integer,primary_key=True)
     nome_servico: Mapped[str] = mapped_column(String, nullable=False)
     desconto: Mapped[int] = mapped_column(Integer, nullable=False)

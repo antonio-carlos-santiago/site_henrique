@@ -68,7 +68,7 @@ def CadastrarServico():
         adicionando_servico = RegistrarServicoDb(registrarservico, current_user)
 
         flash(adicionando_servico['message'], adicionando_servico['status_notificacao'])
-        return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa, registrarservico=registrarservico)
+            
 
     return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa, registrarservico=registrarservico)
     

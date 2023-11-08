@@ -3,8 +3,9 @@ from numpy import diag
 from wtforms import SubmitField, StringField, EmailField, PasswordField, DateField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from wtforms import validators
+from flask import flash
 
-from henrique.modelos import Usuarios, Empresassocias
+from henrique.modelos import *
 
 
 class Login_sis(FlaskForm):
@@ -62,7 +63,7 @@ class NovaEmpresa(FlaskForm):
     def validate_cnpj(self, cnpj):
         empresas = Empresassocias.query.filter_by(cnpj=cnpj.data).first()
         if empresas:
-            raise ValidationError("CNPJ já cadastrado !!!")
+            raise ValidationError("Esse serviço ja foi cadastrado anteriormente")
 
 
 
@@ -127,7 +128,16 @@ class RegistrarServico(FlaskForm):
     servico = StringField("Informe o Serviço", validators=[DataRequired("Campo Obrigatorio")])
     desconto = SelectField("Informe o Desconto",choices=lista_descontos, validators=[DataRequired("Campo Obrigatorio")])
     btn_reg_serv = SubmitField("Registar")
-        
+
+
+    def validate_servico(self, servico):
+        servicodisponivel = Servicosdisponiveis.query.all()
+        for servicos in servicodisponivel:
+              if servicos.nome_servico == servico.data.upper() and servicos.empresa.cnpj == self.cnpj.data:
+                    raise ValidationError("Este serviço já consta cadastrado para essa empresa")
+              
+
+
 
 
 class CadastrarParticipante(FlaskForm):

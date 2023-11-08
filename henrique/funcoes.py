@@ -45,9 +45,9 @@ def BuscarEmpresaDb(cnpj):
 def RegistrarServicoDb(registrarservico, usuario):
     referencia = Empresassocias.query.filter_by(cnpj=registrarservico.cnpj.data).first()
     id_empresa = Empresassocias.query.get(referencia.id_empresa)
-    novoservico = ServicosDisponiveis(nome_servico=registrarservico.servico.data,
+    novoservico = Servicosdisponiveis(nome_servico=registrarservico.servico.data.upper(),
                                       desconto=registrarservico.desconto.data,
-                                      user_cadastro=usuario.email,
+                                      user_cadastro=usuario.email.upper(),
                                       empresa=id_empresa,
                                       )
     db.session.add(novoservico)
