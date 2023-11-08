@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, flash, url_for, session
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from henrique import app, db, bcrypt
 from henrique.formularios import *
 from henrique.modelos import Usuarios
@@ -58,11 +58,19 @@ def CadastrarEmpressa():
 @login_required
 def CadastrarServico():
     buscarempresa = BuscarEmpresa()
+    registrarservico = RegistrarServico()
     if buscarempresa.validate_on_submit() and "btn_busca" in request.form:
+        registrarservico.cnpj.data = buscarempresa.cnpj.data
         status = BuscarEmpresaDb(buscarempresa.cnpj.data)
-        return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa, status=status)
+        return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa, status=status, registrarservico=registrarservico)
 
-    return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa)
+    if registrarservico.validate_on_submit() and "btn_reg_serv" in request.form:
+        adicionando_servico = RegistrarServicoDb(registrarservico, current_user)
+
+        flash(adicionando_servico['message'], adicionando_servico['status_notificacao'])
+        return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa, registrarservico=registrarservico)
+
+    return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa, registrarservico=registrarservico)
     
 
 

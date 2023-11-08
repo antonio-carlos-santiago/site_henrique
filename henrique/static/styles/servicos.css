@@ -40,7 +40,7 @@ width: 26vw;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-background-color: red;
+
 }
 
 .card-principal{
@@ -130,3 +130,17 @@ background-color: red;
     width: 100%;
     margin-left: 10px;
  }
+
+ .textfield-serv > select{
+    width: 25vw;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: #514869;
+    color: #f0ffffde;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+    margin-top: 2px;
+}

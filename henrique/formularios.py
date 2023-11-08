@@ -119,6 +119,16 @@ class BuscarEmpresa(FlaskForm):
             raise ValidationError("Empresa não encontrada")
         
 
+class RegistrarServico(FlaskForm):
+    lista_descontos = [(f"{desconto}", f"{desconto} %") for desconto in range(10, 91)]
+
+
+    cnpj = StringField("CNPJ")
+    servico = StringField("Informe o Serviço", validators=[DataRequired("Campo Obrigatorio")])
+    desconto = SelectField("Informe o Desconto",choices=lista_descontos, validators=[DataRequired("Campo Obrigatorio")])
+    btn_reg_serv = SubmitField("Registar")
+        
+
 
 class CadastrarParticipante(FlaskForm):
     nome_participante = StringField("Nome Participante", validators=[DataRequired(message="Campo Obrigatório")])

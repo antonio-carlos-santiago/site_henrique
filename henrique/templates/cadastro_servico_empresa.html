@@ -3,100 +3,121 @@
 {% block body %}
 <div class="tela-principal">
     <div class="card-principal">
-        <form method="post" action="">
-            {{buscarempresa.csrf_token}}
-            <div class="container-interno">
-                <form action="", method="post">
-                    {{buscarempresa.csrf_token}}
+        <div class="container-interno">
+            <form action="", method="post">
+                {{buscarempresa.csrf_token}}
+                <div class="textfield-serv">
+                    {{buscarempresa.cnpj.label}}
+                    {% if buscarempresa.errors %}
+                        {{buscarempresa.cnpj(class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for erros in buscarempresa.cnpj.errors %}
+                                {{ erros }}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{buscarempresa.cnpj(placeholder="12.345.678/0001-90")}}
+                    {% endif %}
+                </div>
+                {% if status %}
                     <div class="textfield-serv">
-                        {{buscarempresa.cnpj.label}}
-                        {% if buscarempresa.errors %}
-                            {{buscarempresa.cnpj(class="form-control is-invalid")}}
-                            <div class="invalid-feedback">
-                                {% for erros in buscarempresa.cnpj.errors %}
-                                    {{ erros }}
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ buscarempresa.cnpj(placeholder="12.345.678/0001-90")}}
-                        {% endif %}
+                        <label>Data Cadastro</label>
+                        <input type="text" value="{{status['dt_cadastro']}}" disabled="True">
                     </div>
+                    <div class="textfield-serv">
+                        <label>Validade</label>
+                        <input type="text" value="{{status['validade_contrato']}}" disabled="True">
+                    </div>
+                {% else %}
+                <br>
+                <br>
                     {{ buscarempresa.btn_busca(class='btn-busca-cof') }}
-                    <br>
-                    <br>
-                </form>
-            </div>
-            <div class="container-interno">
-                
-                
-            </div>
-            <div class="container-interno">
-                {% if status %}
-                    <div class="textfield-serv">
-                        <label>Empresa</label>
-                        <input type="text" value="{{status['nome']}}" disabled="True">
-                    </div> 
-                    <div class="textfield-serv">
-                        <label>CEP</label>
-                        <input type="text" value="{{status['cep']}}" disabled="True">
-                    </div>
-                    <div class="textfield-serv">
-                        <label>Estado</label>
-                        <input type="text" value="{{status['estado']}}" disabled="True">
-                    </div>
-                {% else %}
-                    <div class="textfield-serv">
-                        <label>Empresa</label>
-                        <input type="text" value="" disabled="True">
-                    </div> 
-                    <div class="textfield-serv">
-                        <label>CEP</label>
-                        <input type="text" value="" disabled="True">
-                    </div>
-                    <div class="textfield-serv">
-                        <label>Estado</label>
-                        <input type="text" value="" disabled="True">
-                    </div>
-                {% endif %}             
-            </div>
-            <div class="container-interno">
-                
-            </div>
-            <div class="container-interno">
-                {% if status %}
-                    <div class="textfield-serv">
-                        <label>Cidade</label>
-                        <input type="text" value="{{status.cidade}}" disabled="True">
-                    </div>
-                    <div class="textfield-serv">
-                        <label>Endereço</label>
-                        <input type="text" value="{{status.endereco}}" disabled="True">
-                    </div>
-                    <div class="textfield-serv">
-                        <label>Status Empresa</label>
-                        <input type="text" value="{{status.status}}" disabled="True">
-                    </div>
-                {% else %}
-                    <div class="textfield-serv">
-                        <label>Cidade</label>
-                        <input type="text" value="" disabled="True">
-                    </div>
-                    <div class="textfield-serv">
-                        <label>Endereço</label>
-                        <input type="text" value="" disabled="True">
-                    </div>
-                    <div class="textfield-serv">
-                        <label>Status Empresa</label>
-                        <input type="text" value="" disabled="True">
-                    </div>
+                    
                 {% endif %}
-            </div>
-            <div class="container-interno">
-                
-            </div>
+            </form>
+        </div>
+        <div class="container-interno">
+            <form action="", method="post">
+                {{registrarservico.csrf_token}}
+                {% if status %}
+                    <div class="textfield-serv">
+                        {{registrarservico.servico.label}}
+                        {{registrarservico.servico(placeholder="Fisioterapia")}}
+                        {{registrarservico.cnpj(type="hidden")}}
+                    </div>
+                    <div class="textfield-serv">
+                        {{registrarservico.desconto.label}}
+                        {{registrarservico.desconto(placeholder="10")}}
+                    </div>
+                    {{registrarservico.btn_reg_serv(class='btn-busca-cof')}}
+                {% endif %}
+            </form>
+        </div>
+        <div class="container-interno">
+            {% if status %}
+                <div class="textfield-serv">
+                    <label>Empresa</label>
+                    <input type="text" value="{{status['nome']}}" disabled="True">
+                </div> 
+                <div class="textfield-serv">
+                    <label>CEP</label>
+                    <input type="text" value="{{status['cep']}}" disabled="True">
+                </div>
+                <div class="textfield-serv">
+                    <label>Estado</label>
+                    <input type="text" value="{{status['estado']}}" disabled="True">
+                </div>
+            {% else %}
+                <div class="textfield-serv">
+                    <label>Empresa</label>
+                    <input type="text" value="" disabled="True">
+                </div> 
+                <div class="textfield-serv">
+                    <label>CEP</label>
+                    <input type="text" value="" disabled="True">
+                </div>
+                <div class="textfield-serv">
+                    <label>Estado</label>
+                    <input type="text" value="" disabled="True">
+                </div>
+            {% endif %}             
+        </div>
+        <div class="container-interno">
             
-        </form>
-
+            
+        </div>
+        <div class="container-interno">
+            {% if status %}
+                <div class="textfield-serv">
+                    <label>Cidade</label>
+                    <input type="text" value="{{status.cidade}}" disabled="True">
+                </div>
+                <div class="textfield-serv">
+                    <label>Endereço</label>
+                    <input type="text" value="{{status.endereco}}" disabled="True">
+                </div>
+                <div class="textfield-serv">
+                    <label>Status Empresa</label>
+                    <input type="text" value="{{status.status}}" disabled="True">
+                </div>
+            {% else %}
+                <div class="textfield-serv">
+                    <label>Cidade</label>
+                    <input type="text" value="" disabled="True">
+                </div>
+                <div class="textfield-serv">
+                    <label>Endereço</label>
+                    <input type="text" value="" disabled="True">
+                </div>
+                <div class="textfield-serv">
+                    <label>Status Empresa</label>
+                    <input type="text" value="" disabled="True">
+                </div>
+            {% endif %}
+        </div>
+        <div class="container-interno">
+            
+        </div>
     </div>
 </div>
 
