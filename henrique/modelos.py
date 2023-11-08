@@ -66,6 +66,7 @@ class Empresassocias(db.Model):
     cidade: Mapped[str] = mapped_column(String, unique=False, nullable=False)
     endereco: Mapped[str] = mapped_column(String, unique=False, nullable=False)
     numero_residencia: Mapped[int] = mapped_column(Integer, unique=False, nullable=False)
+    telefone: Mapped[str] = mapped_column(String, default="Sem contato")
     status: Mapped[bool] = mapped_column(Boolean, unique=False, default=True)
     data_cadastro: Mapped[str] = mapped_column(DateTime, default=datetime.utcnow)
     data_fim_contrato: Mapped[str] = mapped_column(DateTime, nullable=False)

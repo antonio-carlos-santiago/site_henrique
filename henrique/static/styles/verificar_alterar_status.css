@@ -25,3 +25,106 @@ body{
     box-shadow: 0px 10px 40px #00000056;
     flex-wrap: wrap;
 }
+
+.card-status > h1{
+    color: #00ff88;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+
+}
+
+.conteiner-row{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+    
+}
+
+.mini-conteiner{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn-buscaempre-conf{
+    height: 60%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background: #00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+    text-align: center;
+    align-items: baseline;
+    margin-top: 25px;
+ }
+
+ .textfield-att{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.textfield-att > input{
+    width: 14vw;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: #514869;
+    color: #f0ffffde;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.textfield-att > label{
+    color: #f0ffffde;
+    margin-bottom: 10px;
+}
+
+.textfield-att > input::placeholder{
+    color: #f0ffff94;
+}
+
+.textfield-att > select{
+    width: 14vw;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: #514869;
+    color: #f0ffffde;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.btn-atualiza-conf{
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background: #00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+    text-align: center;
+    align-items: baseline;
+    padding: 15px;
+ }

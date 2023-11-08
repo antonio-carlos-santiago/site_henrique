@@ -1,7 +1,9 @@
 from flask import render_template, request, redirect, flash, url_for, session
 from flask_login import login_user, logout_user, login_required, current_user
 from henrique import app, db, bcrypt
-from henrique.formularios import *
+from henrique.formularios.forms_cliente import *
+from henrique.formularios.forms_empresa import *
+from henrique.formularios.forms_site import *
 from henrique.modelos import Usuarios
 import time
 from henrique.funcoes import *
@@ -74,7 +76,12 @@ def CadastrarServico():
 @app.route("/verificar-alterar-status", methods=["get", "post"])
 @login_required
 def Verificar_Alterar_Status():
-    return render_template("verificar_alterar_status.html")
+    form_empresas = StatusEmpresa()
+    form_atualizacao = AtualizacaoEmpresa()
+    if form_empresas.validate_on_submit() and 'btn_conf' in request.form:
+        print(form_empresas.empresas.data)
+
+    return render_template("verificar_alterar_status.html", form_empresas=form_empresas, form_atualizacao=form_atualizacao)
 
 
 

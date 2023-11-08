@@ -5,9 +5,87 @@
 {% block body %}
 <div class="tela-status">
     <div class="card-status">
-
+        <h1> EMPRESAS </h1>
+        <form method="post" action="">
+            {{form_empresas.csrf_token}}
+            <div class="conteiner-row">
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_empresas.empresas.label}}
+                        {{form_empresas.empresas}}
+                    </div>
+                </div>
+                <div class="mini-conteiner">
+                    {{ form_empresas.btn_conf(class='btn-buscaempre-conf')}}                    
+                </div>                
+            </div>
+        </form>
+        <h1>DADOS CADASTRAIS</h1>
+        <form action="" method="post">
+            {{form_atualizacao.csrf_token}}
+            <div class="conteiner-row">
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao.nome.label}}
+                        {{form_atualizacao.nome}}
+                    </div>
+                </div>
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao.status.label}}
+                        {{form_atualizacao.status}}
+                    </div>
+                </div>
+            </div>
+            <div class="conteiner-row">
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao.cep.label}}
+                        {{form_atualizacao.cep}}
+                    </div>
+                </div>
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao.estado.label}}
+                        {{form_atualizacao.estado}}
+                    </div>
+                </div>
+            </div>
+            <div class="conteiner-row">
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao.cidade.label}}
+                        {{form_atualizacao.cidade}}
+                    </div>
+                </div>
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao.endereco.label}}
+                        {{form_atualizacao.endereco}}
+                    </div>
+                </div>
+            </div>
+            <div class="conteiner-row">
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao.numero_residencia.label}}
+                        {{form_atualizacao.numero_residencia}}
+                    </div>
+                </div>
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao.telefone.label}}
+                        {{form_atualizacao.telefone}}
+                    </div>
+                </div>
+            </div>
+            <div class="conteiner-row">
+                {{form_atualizacao.btn_atualizar_empresa(class='btn-atualiza-conf')}}
+            </div>
+        </form>    
     </div>
     <div class="card-status">
+        <h1> SERVIÇOS </h1>
         
     </div>
 </div>
