@@ -58,6 +58,10 @@ def CadastrarEmpressa():
 @login_required
 def CadastrarServico():
     buscarempresa = BuscarEmpresa()
+    if buscarempresa.validate_on_submit() and "btn_busca" in request.form:
+        status = BuscarEmpresaDb(buscarempresa.cnpj.data)
+        return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa, status=status)
+
     return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa)
     
 

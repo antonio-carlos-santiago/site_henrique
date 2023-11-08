@@ -110,7 +110,7 @@ class BuscarCliente(FlaskForm):
 
 
 class BuscarEmpresa(FlaskForm):
-    cnpj = StringField("CPF Conta Master", validators=[DataRequired(message="Campo Obrigatório"), Length(14, 14)])
+    cnpj = StringField("CNPJ", validators=[DataRequired(message="Campo Obrigatório"), Length(14, 14)])
     btn_busca = SubmitField("Buscar Master")
 
     def validate_cnpj(self, cnpj):

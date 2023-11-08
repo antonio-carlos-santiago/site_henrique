@@ -15,11 +15,21 @@ def RegistarEmpresa(dadosempresa):
                                         numero_residencia=dadosempresa.numero_residencia.data,
                                         data_fim_contrato=data_final_contrato
                                         )
-    try:
-        db.session.add(empresa_cadastrada)
-        db.session.commit()
-        return {"message": "Empresa registrada com sucesso", "status_notificacao": "alert-info"}
     
-    except Exception as erro:
-        print(erro)
-        return {"message": "Erro ao registrar empresa", "status_notificacao": "alert-danger"}
+    db.session.add(empresa_cadastrada)
+    db.session.commit()
+    return {"message": "Empresa registrada com sucesso", "status_notificacao": "alert-info"}
+    
+    
+def BuscarEmpresaDb(cnpj):
+    empresa = Empresassocias.query.filter_by(cnpj=cnpj).first()
+    if empresa:
+        dados = {}
+        dados["nome"] = empresa.nome
+        dados["cep"] = empresa.cep
+        dados["estado"] = empresa.estado
+        dados["cidade"] = empresa.cidade
+        dados["endereco"] = empresa.endereco
+        dados["status"] = empresa.status
+        return dados
+    

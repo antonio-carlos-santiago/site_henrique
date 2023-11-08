@@ -14,32 +14,6 @@ body{
     align-items: center;
 }
 
-.card-principal{
-    width: 80%;
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 30px 35px;
-    background: #2f2841;
-    border-radius: 20px;
-    box-shadow: 0px 10px 40px #00000056;
-}
-
-.conteiner-complemento{
-    width: 1350px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    padding: 10px 10px;
-    background: #2f2841;
-    border-radius: 20px;
-    box-shadow: 0px 10px 40px #00000056;
-    margin: 10px;
-}
 
 .btn-busca{
     width: 100%;
@@ -57,3 +31,102 @@ body{
     box-shadow: 0px 10px 40px -12px #00ff8052;    
 }
 
+
+.container-interno {
+padding: 10px;
+margin: 2px;
+height: 38vh;
+width: 26vw;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+background-color: red;
+}
+
+.card-principal{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px;
+    background: #2f2841;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #00000056;
+    flex-wrap: wrap;
+}
+
+.textfield-serv{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+}
+
+.textfield-serv > input{
+    width: 25vw;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: #514869;
+    color: #f0ffffde;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+    margin-top: 2px;
+}
+
+.select > input{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: #514869;
+    color: #f0ffffde;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.select{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+    color: #F4A460;
+    background: #F4A460	;
+}
+
+.textfield-serv > label{
+    color: #f0ffffde;
+    margin-bottom: 2px;
+}
+
+.textfield-serv > input::placeholder{
+    color: #f0ffff94;
+}
+.btn-busca-cof{
+    margin-top: 10px;
+    width: 60%;
+    height: 20%;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background: #00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+    text-align: center;
+ }
+
+ .conf-btn-cad_busca{
+    width: 100%;
+    margin-left: 10px;
+ }
