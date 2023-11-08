@@ -136,9 +136,7 @@ class RegistrarServico(FlaskForm):
               if servicos.nome_servico == servico.data.upper() and servicos.empresa.cnpj == self.cnpj.data:
                     raise ValidationError("Este serviço já consta cadastrado para essa empresa")
               
-
-
-
+              
 
 class CadastrarParticipante(FlaskForm):
     nome_participante = StringField("Nome Participante", validators=[DataRequired(message="Campo Obrigatório")])

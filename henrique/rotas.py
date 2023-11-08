@@ -66,12 +66,15 @@ def CadastrarServico():
 
     if registrarservico.validate_on_submit() and "btn_reg_serv" in request.form:
         adicionando_servico = RegistrarServicoDb(registrarservico, current_user)
-
         flash(adicionando_servico['message'], adicionando_servico['status_notificacao'])
             
-
     return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa, registrarservico=registrarservico)
     
+
+@app.route("/verificar-alterar-status", methods=["get", "post"])
+@login_required
+def Verificar_Alterar_Status():
+    return render_template("verificar_alterar_status.html")
 
 
 
