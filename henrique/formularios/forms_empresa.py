@@ -124,9 +124,29 @@ class AtualizacaoEmpresa(FlaskForm):
 
 
 class BuscarServicos(FlaskForm):
-    servicos = SelectField("Servicos", choices=[("", "SELECIONE UMA EMPRESA")], validators=[DataRequired()])
+    servicos = SelectField("Servicos", choices=[("", "BUSQUE A EMPRESA ANTES")])
+    empresa = HiddenField()
     btn_conf_servico = SubmitField('Verificar Serviço')
 
 
-              
-              
+
+
+class AtualizacaoServicos(FlaskForm):
+    statusserv = [
+        ('', "Indefinido"),
+        ("1", "Ativa"),
+        ("0", 'Inativa')
+    ]
+
+    lista_descontos = [(f"{desconto}", f"{desconto} %") for desconto in range(1, 95)]
+
+
+    nome_empresa = StringField("Prestadora de serviço", validators=[DataRequired()])
+    cnpj_empresa = StringField("CNPJ Responsavel", validators=[DataRequired()])
+    nome_servico = StringField("Serviço ofertado", validators=[DataRequired()])
+    desconto = SelectField("Desconto por indicação", choices=lista_descontos, validators=[DataRequired()])
+    status_servico = SelectField("Status de serviço", choices=statusserv, validators={DataRequired()})
+    btn_atualiza_servico = SubmitField("Atualizar Dados")
+
+
+    

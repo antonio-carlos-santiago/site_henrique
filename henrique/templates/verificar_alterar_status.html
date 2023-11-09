@@ -94,6 +94,7 @@
                     <div class="textfield-att">
                         {{form_buscaservicos.servicos.label}}
                         {{form_buscaservicos.servicos}}
+                        {{form_atualizacao.nome(type='hidden')}}
                     </div>
                 </div>
                 <div class="mini-conteiner">
@@ -101,8 +102,50 @@
                 </div>                
             </div>
         </form>
-        
-        
+        <h1>DADOS SOBRE OS SERVIÇOS</h1>
+        <form action="" method="post">
+            {{form_atualizacao_serv.csrf_token}}
+            <div class="conteiner-row">
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao_serv.nome_empresa.label}}
+                        {{form_atualizacao_serv.nome_empresa(disabled='True')}}
+                    </div>
+                </div>
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao_serv.cnpj_empresa.label}}
+                        {{form_atualizacao_serv.cnpj_empresa(disabled='True')}}
+                    </div>
+                </div>
+            </div>
+            <div class="conteiner-row">
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao_serv.nome_servico.label}}
+                        {{form_atualizacao_serv.nome_servico(disabled='True')}}
+                    </div>
+                </div>
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao_serv.desconto.label}}
+                        {{form_atualizacao_serv.desconto}}
+                    </div>
+                </div>
+            </div>
+            <div class="conteiner-row">
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_atualizacao_serv.status_servico.label}}
+                        {{form_atualizacao_serv.status_servico}}
+                    </div>
+                </div>
+            </div>
+            <div class="conteiner-row">
+                {{form_atualizacao_serv.btn_atualiza_servico(class='btn-atualiza-conf')}}
+                {{form_atualizacao_serv.nome_origem}}
+            </div>
+        </form>    
     </div>
 </div>
 

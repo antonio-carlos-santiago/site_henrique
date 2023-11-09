@@ -81,16 +81,17 @@ def CadastrarServico():
 @app.route("/verificar-alterar-status", methods=["get", "post"])
 @login_required
 def Verificar_Alterar_Status():
+
     form_empresas = BuscarEmpresas()
     form_atualizacao = AtualizacaoEmpresa()
     form_empresas_serv = BuscarEmpresas()
     form_buscaservicos = BuscarServicos()
+    form_atualizacao_serv = AtualizacaoServicos()
 
     if form_empresas.validate_on_submit() and 'btn_conf' in request.form:
+
         lista_servicos = BuscaServicosDb(form_empresas.empresas.data)
         form_buscaservicos.servicos.choices = lista_servicos
-
-        print(form_empresas.empresas.data)
 
         status = PesquisaPorEmpresa(form_empresas.empresas.data)
         form_atualizacao.nome_origem.data = form_empresas.empresas.data
@@ -104,10 +105,12 @@ def Verificar_Alterar_Status():
         form_atualizacao.telefone.data = status['telefone']
         return render_template(
             "verificar_alterar_status.html",
-             form_empresas=form_empresas,
-             form_atualizacao=form_atualizacao,
-             form_buscaservicos=form_buscaservicos,
-             )
+            form_empresas=form_empresas,
+            form_atualizacao=form_atualizacao,
+            form_buscaservicos=form_buscaservicos,
+            form_empresas_serv=form_empresas_serv,
+            form_atualizacao_serv=form_atualizacao_serv
+            )
     
 
     
@@ -116,13 +119,36 @@ def Verificar_Alterar_Status():
         flash(status['message'], status['status_notificacao'])
 
 
+    if 'btn_conf_servico' in request.form:
+        servico = form_buscaservicos.servicos.data
+        empresa = form_atualizacao.nome.data
+        dados = PesquisaPorEmpresaComServico(empresa, servico)
+
+        form_atualizacao_serv.nome_empresa.data = dados['nome']
+        form_atualizacao_serv.cnpj_empresa.data = dados['cnpj']
+        form_atualizacao_serv.nome_servico.data = dados['nome_servico']
+        form_atualizacao_serv.desconto.data = dados['desconto']
+        form_atualizacao_serv.status_servico.data = dados['status']
+
+        return render_template(
+            "verificar_alterar_status.html",
+            form_empresas=form_empresas,
+            form_atualizacao=form_atualizacao,
+            form_buscaservicos=form_buscaservicos,
+            form_empresas_serv=form_empresas_serv,
+            form_atualizacao_serv=form_atualizacao_serv
+            )
+
+
+
 
     return render_template(
         "verificar_alterar_status.html",
         form_empresas=form_empresas,
         form_atualizacao=form_atualizacao,
         form_buscaservicos=form_buscaservicos,
-        form_empresas_serv=form_empresas_serv
+        form_empresas_serv=form_empresas_serv,
+        form_atualizacao_serv=form_atualizacao_serv
         )
 
 
