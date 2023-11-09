@@ -27,7 +27,7 @@
                 <div class="mini-conteiner">
                     <div class="textfield-att">
                         {{form_atualizacao.nome.label}}
-                        {{form_atualizacao.nome}}
+                        {{form_atualizacao.nome(disabled="True")}}
                     </div>
                 </div>
                 <div class="mini-conteiner">
@@ -54,14 +54,14 @@
             <div class="conteiner-row">
                 <div class="mini-conteiner">
                     <div class="textfield-att">
-                        {{form_atualizacao.cidade.label}}
-                        {{form_atualizacao.cidade}}
+                        {{form_atualizacao.endereco.label}}
+                        {{form_atualizacao.endereco}}
                     </div>
                 </div>
                 <div class="mini-conteiner">
                     <div class="textfield-att">
-                        {{form_atualizacao.endereco.label}}
-                        {{form_atualizacao.endereco}}
+                        {{form_atualizacao.cidade.label}}
+                        {{form_atualizacao.cidade}}
                     </div>
                 </div>
             </div>
@@ -81,11 +81,27 @@
             </div>
             <div class="conteiner-row">
                 {{form_atualizacao.btn_atualizar_empresa(class='btn-atualiza-conf')}}
+                {{form_atualizacao.nome_origem}}
             </div>
         </form>    
     </div>
     <div class="card-status">
         <h1> SERVIÇOS </h1>
+        <form method="post" action="">
+            {{form_buscaservicos.csrf_token}}
+            <div class="conteiner-row">
+                <div class="mini-conteiner">
+                    <div class="textfield-att">
+                        {{form_buscaservicos.servicos.label}}
+                        {{form_buscaservicos.servicos}}
+                    </div>
+                </div>
+                <div class="mini-conteiner">
+                    {{ form_buscaservicos.btn_conf_servico(class='btn-buscaempre-conf')}}                    
+                </div>                
+            </div>
+        </form>
+        
         
     </div>
 </div>

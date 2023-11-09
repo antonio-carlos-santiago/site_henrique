@@ -11,6 +11,7 @@ from henrique.funcoes.funcoes_cadastro_servico import *
 from henrique.funcoes.funcoes_status_alteracao import *
 
 
+
 @app.before_request
 def session_management():
     session.permanent = True
@@ -75,15 +76,56 @@ def CadastrarServico():
     return render_template("cadastro_servico_empresa.html", buscarempresa=buscarempresa, registrarservico=registrarservico)
     
 
+
+
 @app.route("/verificar-alterar-status", methods=["get", "post"])
 @login_required
 def Verificar_Alterar_Status():
-    form_empresas = StatusEmpresa()
+    form_empresas = BuscarEmpresas()
     form_atualizacao = AtualizacaoEmpresa()
+    form_empresas_serv = BuscarEmpresas()
+    form_buscaservicos = BuscarServicos()
+
     if form_empresas.validate_on_submit() and 'btn_conf' in request.form:
+        lista_servicos = BuscaServicosDb(form_empresas.empresas.data)
+        form_buscaservicos.servicos.choices = lista_servicos
+
         print(form_empresas.empresas.data)
 
-    return render_template("verificar_alterar_status.html", form_empresas=form_empresas, form_atualizacao=form_atualizacao)
+        status = PesquisaPorEmpresa(form_empresas.empresas.data)
+        form_atualizacao.nome_origem.data = form_empresas.empresas.data
+        form_atualizacao.nome.data = status['nome']
+        form_atualizacao.status.data = status['status']
+        form_atualizacao.cep.data = status['cep']
+        form_atualizacao.estado.data = status['estado']
+        form_atualizacao.cidade.data = status['cidade']
+        form_atualizacao.endereco.data = status['endereco']
+        form_atualizacao.numero_residencia.data = status['numero_residencia']
+        form_atualizacao.telefone.data = status['telefone']
+        return render_template(
+            "verificar_alterar_status.html",
+             form_empresas=form_empresas,
+             form_atualizacao=form_atualizacao,
+             form_buscaservicos=form_buscaservicos,
+             )
+    
+
+    
+    if form_atualizacao.validate_on_submit() and "btn_atualizar_empresa" in request.form:
+        status = AtualizarDadosCadastrais(form_atualizacao)
+        flash(status['message'], status['status_notificacao'])
+
+
+
+    return render_template(
+        "verificar_alterar_status.html",
+        form_empresas=form_empresas,
+        form_atualizacao=form_atualizacao,
+        form_buscaservicos=form_buscaservicos,
+        form_empresas_serv=form_empresas_serv
+        )
+
+
 
 
 
@@ -99,6 +141,8 @@ def Criar_Acesso():
         flash('Usuario cadastrado com sucesso', 'alert-info')
 
     return render_template('novo_usuario.html', novo_usuario=novo_usuario)
+
+
 
 
 

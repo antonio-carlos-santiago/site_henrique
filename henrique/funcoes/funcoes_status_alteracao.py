@@ -1,64 +1,63 @@
 from henrique.modelos import *
 from henrique import db, app
-from datetime import datetime, timedelta
 
 
 
-def RegistarEmpresa(dadosempresa):
-    data_final_contrato = datetime.now() + timedelta(days=int(dadosempresa.adesao.data) * 365)
-    empresa_cadastrada = Empresassocias(nome=dadosempresa.nome.data.upper(),
-                                        cnpj=dadosempresa.cnpj.data,
-                                        cep=dadosempresa.cep.data,
-                                        estado=dadosempresa.estado.data,
-                                        cidade=dadosempresa.cidade.data,
-                                        endereco=dadosempresa.endereco.data.upper(),
-                                        numero_residencia=dadosempresa.numero_residencia.data,
-                                        data_fim_contrato=data_final_contrato
-                                        )
-    
-    db.session.add(empresa_cadastrada)
-    db.session.commit()
-    return {"message": "Empresa registrada com sucesso", "status_notificacao": "alert-info"}
-    
-    
-def BuscarEmpresaDb(cnpj):
-    empresa = Empresassocias.query.filter_by(cnpj=cnpj).first()
-    if empresa:
-        dados = {}
-        if empresa.status:
-            dados["status"] = "ATIVA"
-        else:
-            dados["status"] = "DESATIVADA"
-        dados["cnpj"] = empresa.nome
-        dados["nome"] = empresa.nome
-        dados["cep"] = empresa.cep
-        dados["estado"] = empresa.estado
-        dados["cidade"] = empresa.cidade
-        dados["endereco"] = empresa.endereco
-        dados["dt_cadastro"] = empresa.data_cadastro
-        dados["validade_contrato"] = empresa.data_fim_contrato 
-        return dados
-    else:
-        return False
-    
-
-def RegistrarServicoDb(registrarservico, usuario):
-    referencia = Empresassocias.query.filter_by(cnpj=registrarservico.cnpj.data).first()
-    id_empresa = Empresassocias.query.get(referencia.id_empresa)
-    novoservico = Servicosdisponiveis(nome_servico=registrarservico.servico.data.upper(),
-                                      desconto=registrarservico.desconto.data,
-                                      user_cadastro=usuario.email.upper(),
-                                      empresa=id_empresa,
-                                      )
-    db.session.add(novoservico)
-    db.session.commit()
-    return {"message": "Registrado com sucesso", "status_notificacao": "alert-success"}
+def BuscaServicosDb(empresa):
+    todos_servicos = Servicosdisponiveis.query.all()
+    lista_servico = [(servicos.nome_servico, servicos.empresa.cnpj) for servicos in todos_servicos if servicos.empresa.nome == empresa  ]
+    return lista_servico
 
 
 
 def ListarEmpresas():
-    with app.app_context():
-        cadastros_empresas = Empresassocias.query.all()
-        lista_empresas = [empresa.nome for empresa in cadastros_empresas]
-        return lista_empresas
+    cadastros_empresas = Empresassocias.query.all()
+    lista_empresas = [empresa.nome for empresa in cadastros_empresas]
+    return lista_empresas
+    
+
+
+def PesquisaPorEmpresa(empresa):
+    empresaprocurada = Empresassocias.query.filter_by(nome=empresa).first()
+    
+    dados = {}
+    dados['nome'] = empresaprocurada.nome
+    dados['cep'] = empresaprocurada.cep
+    dados['estado'] = empresaprocurada.estado
+    dados['cidade'] = empresaprocurada.cidade
+    dados['endereco'] = empresaprocurada.endereco
+    dados['numero_residencia'] = empresaprocurada.numero_residencia
+    dados['telefone'] = empresaprocurada.telefone
+    dados['data_cadastro'] = empresaprocurada.data_cadastro
+    if empresaprocurada.status:
+        dados['status'] = '1'
+    else:
+        dados['status'] = '0'
+
+    return dados
+
+
+def AtualizarDadosCadastrais(novosdados):
+    print(novosdados.nome_origem.data)
+    cadastro_atualizado = Empresassocias.query.filter_by(nome=novosdados.nome_origem.data).first()
+    cadastro_atualizado.cep = novosdados.cep.data
+    cadastro_atualizado.estado = novosdados.estado.data
+    cadastro_atualizado.cidade = novosdados.cidade.data
+    cadastro_atualizado.endereco = novosdados.endereco.data.upper()
+    cadastro_atualizado.numero_residencia = novosdados.numero_residencia.data
+    cadastro_atualizado.telefone = novosdados.telefone.data
+    if int(novosdados.status.data):
+        cadastro_atualizado.status = True
+    else:
+        cadastro_atualizado.status = False
+    db.session.commit()
+
+
+    for itens in novosdados:
+        itens.data = ''
+    return {"message": "Empresa Atualizada com sucesso", "status_notificacao": "alert-info"}
+
+
+
+    
     

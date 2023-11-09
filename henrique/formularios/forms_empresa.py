@@ -1,5 +1,6 @@
+
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, StringField, EmailField, PasswordField, DateField, SelectField
+from wtforms import SubmitField, StringField, SelectField, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from henrique.funcoes.funcoes_status_alteracao import *
 from henrique.modelos import *
@@ -73,11 +74,13 @@ class RegistrarServico(FlaskForm):
 
 
 
-class StatusEmpresa(FlaskForm):
+class BuscarEmpresas(FlaskForm):
     def empresas_validadas():
         return ListarEmpresas()
+    
     empresas = SelectField("Empresa", choices=empresas_validadas, validators=[DataRequired()])
     btn_conf = SubmitField('Buscar Cadastro')
+
 
 
 class AtualizacaoEmpresa(FlaskForm):
@@ -100,22 +103,29 @@ class AtualizacaoEmpresa(FlaskForm):
         ("5",'5 anos'),
     ]
 
-    status_empresa = [
-        (True, "Ativa"),
-        (False, 'Inativa')
+    statusemp = [
+        ('', "Indefinido"),
+        ("1", "Ativa"),
+        ("0", 'Inativa')
     ]
 
 
-    nome = StringField("Nome Fantasia", validators=[DataRequired(message="Campo Obrigatório")])
+    nome = StringField("Nome Fantasia")
+    nome_origem = HiddenField()
     cep = StringField("Cep", validators=[DataRequired(message="Campo Obrigatório"), Length(8, 8)])
     estado = SelectField("Estado", choices=estados, validators=[DataRequired(message="Campo Obrigatório")])
     cidade = SelectField("Cidade", choices=cidades, validators=[DataRequired(message="Campo Obrigatório")])
     endereco = StringField("Endereço", validators=[DataRequired(message="Campo Obrigatório")])
     numero_residencia = StringField("Numero", validators=[DataRequired(message="Campo Obrigatório")])
-    status = SelectField("Status", choices=status_empresa, validators=[DataRequired()])
-    adesao = SelectField("Tempo de Adesão", choices=tempo_adesao, validators=[DataRequired(message="Campo Obrigatório")])
+    status = SelectField("Status", choices=statusemp, validators=[DataRequired()])
     telefone = StringField("Telefone", validators=[DataRequired()])
     btn_atualizar_empresa = SubmitField("Atualizar")
+
+
+
+class BuscarServicos(FlaskForm):
+    servicos = SelectField("Servicos", choices=[("", "SELECIONE UMA EMPRESA")], validators=[DataRequired()])
+    btn_conf_servico = SubmitField('Verificar Serviço')
 
 
               
